@@ -1,0 +1,74 @@
+{
+    "name": "macro-pad",
+    "productName": "macro-pad",
+    "version": "1.0.0",
+    "description": "A GUI implementation of my custom macro pad software (optimised for the akai APC mini) but should work with other midi controllers!",
+    "main": "build/index.js",
+    "scripts": {
+        "compile": "tsc",
+        "start": "npm run compile && electron-forge start",
+        "package": "npm run compile && electron-forge package",
+        "make": "npm run compile && electron-forge make",
+        "publish": "npm run compile && electron-forge publish",
+        "lint": "echo \"No linting configured\""
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/TheTrueGravity/macro-pad.git"
+    },
+    "keywords": [
+        "macropad",
+        "macro-pad",
+        "midi",
+        "typescript",
+        "ts",
+        "electron"
+    ],
+    "author": {
+        "name": "Charlie",
+        "email": "75177875+TheTrueGravity@users.noreply.github.com"
+    },
+    "license": "ISC",
+    "bugs": {
+        "url": "https://github.com/TheTrueGravity/macro-pad/issues"
+    },
+    "homepage": "https://github.com/TheTrueGravity/macro-pad#readme",
+    "dependencies": {
+        "electron-squirrel-startup": "^1.0.0"
+    },
+    "config": {
+        "forge": {
+            "packagerConfig": {},
+            "makers": [
+                {
+                    "name": "@electron-forge/maker-squirrel",
+                    "config": {
+                        "name": "macro-pad"
+                    }
+                },
+                {
+                    "name": "@electron-forge/maker-zip",
+                    "platforms": [
+                        "darwin"
+                    ]
+                },
+                {
+                    "name": "@electron-forge/maker-deb",
+                    "config": {}
+                },
+                {
+                  "name": "@electron-forge/maker-rpm",
+                  "config": {}
+                }
+            ]
+        }
+    },
+    "devDependencies": {
+        "@electron-forge/cli": "^6.0.0-beta.61",
+        "@electron-forge/maker-deb": "^6.0.0-beta.61",
+        "@electron-forge/maker-rpm": "^6.0.0-beta.61",
+        "@electron-forge/maker-squirrel": "^6.0.0-beta.61",
+        "@electron-forge/maker-zip": "^6.0.0-beta.61",
+        "electron": "14.0.1"
+    }
+}
