@@ -103,6 +103,9 @@ dist
 # TernJS port file
 .tern-port
 
-# Bat Scripts
+# Batch Scripts
 push.bat
 build.bat
+
+# Output
+out

@@ -8,7 +8,7 @@ require('@electron/remote/main').initialize()
 async function main() {
     const window = new BrowserWindow({
         width: 1280, height: 720,
-        minWidth: 1300, minHeight: 400,
+        minWidth: 1300, minHeight: 600,
         frame: false, backgroundColor: '#FFF',
         webPreferences: {
             nodeIntegration: true,

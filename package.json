@@ -6,10 +6,16 @@
     "main": "src/index.js",
     "scripts": {
         "start": "electron-forge start",
-        "package": "electron-forge package",
         "make": "electron-forge make",
         "publish": "electron-forge publish",
-        "lint": "echo \"No linting configured\""
+        "lint": "echo \"No linting configured\"",
+        
+        "package": "electron-forge package",
+        "package-mac": "electron-forge package --platform darwin",
+        "package-deb": "electron-forge package --platform linux --targets deb",
+        "package-linux": "electron-forge package --platform linux",
+
+        "package-all": "npm run package && npm run package-mac && npm run package-deb && npm run package-linux"
     },
     "repository": {
         "type": "git",
