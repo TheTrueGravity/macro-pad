@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="css/index.css">
+    <title>Electron App</title>
+</head>
+
+<body>
+    <header id="titlebar">
+        <div id="drag-region">
+            <div id="window-title">
+                <span>Macro Pad</span>
+            </div>
+
+            <div id="window-controls">
+
+                <div class="button" id="min-button"></div>
+
+                <div class="button" id="max-button"></div>
+
+                <div class="button" id="restore-button"></div>
+
+                <div class="button" id="close-button"></div>
+
+            </div>
+        </div>
+    </header>
+
+    <div id="main">
+        <div id="controllers">
+            <div id="create-controller">
+                <h1 id="create-controller-text">Add Controller</h1>
+            </div>
+
+            <div id="controller-list" class="scroll">
+            </div>
+        </div>
+    </div>
+
+    <script src='js/renderer.js'></script>
+    <script src='js/index.js'></script>
+</body>
+
+</html>
