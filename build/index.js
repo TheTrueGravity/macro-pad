@@ -17,7 +17,9 @@ if (require('electron-squirrel-startup')) {
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         const window = new electron_1.BrowserWindow({
-            width: 800, height: 600
+            width: 800, height: 600,
+            autoHideMenuBar: true,
+            webPreferences: { nativeWindowOpen: true }
         });
         window.loadFile(path_1.join(__dirname, '../app/index.html'));
     });

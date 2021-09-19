@@ -105,3 +105,4 @@ dist
 
 # Bat Scripts
 push.bat
+build.bat

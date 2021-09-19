@@ -8,9 +8,8 @@ if (require('electron-squirrel-startup')) {
 async function main() {
     const window = new BrowserWindow({
         width: 800, height: 600,
-        webPreferences: {
-            nativeWindowOpen: true
-        }
+        autoHideMenuBar: true,
+        webPreferences: { nativeWindowOpen: true }
     })
 
     window.loadFile(join(__dirname, '../app/index.html'))
