@@ -30,3 +30,28 @@ function createController(name, imgUrl) {
 document.getElementById('create-controller').onclick = () => {
     createController("Akai APC Mini", "https://th.bing.com/th/id/OIP.q7-RQusilRFZc5aXxarNVQAAAA?pid=ImgDet&rs=1&adlt=strict")
 }
+
+const inputs = {}
+const outputs = {}
+
+async function midi() {
+    const MIDI = await navigator.requestMIDIAccess()
+
+    const _inputs = MIDI.inputs
+    const _outputs = MIDI.outputs
+
+    for (var input of _inputs.values()) {
+        inputs[input.name] = input
+
+        if (input.name == "APC MINI") {
+            input.onmidimessage = console.log
+        }
+    }
+    for (var output of _outputs.values()) {
+        outputs[output.name] = output
+    }
+
+    console.log(inputs, outputs)
+}
+
+midi()

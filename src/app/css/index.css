@@ -206,7 +206,7 @@ body {
 
 .controller {
     background-color: rgb(115, 131, 131);
-    position: relative;
+    position: static;
     height: 100px;
     margin: 10px;
     transition: 0.4s;
@@ -218,7 +218,7 @@ body {
     background-color: rgb(147, 168, 168);
 }
 
-.maximized #controller-list {
+#controller-list {
     height: 87%;
 }
 
@@ -257,6 +257,7 @@ body {
     position: absolute;
     width: 120px;
     height: 78px;
+    color: #eeeeee;
 }
 
 .controller-image {
