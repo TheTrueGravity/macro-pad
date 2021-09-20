@@ -3,8 +3,6 @@ const { app, BrowserWindow } = require('electron')
 const { promisify } = require('util')
 const { join } = require('path')
 
-console.log(require('../plugins/voicemeeter/index'))
-
 const exec = promisify(require('child_process').exec)
 
 if (require('electron-squirrel-startup')) { app.quit() }
