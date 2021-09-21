@@ -5,16 +5,16 @@
     "description": "A GUI implementation of my custom macro pad software (optimised for the akai APC mini) but should work with other midi controllers!",
     "main": "src/index.js",
     "scripts": {
-        "start": "electron-forge start",
-        "start-build": "npm run package && cp -r .\\plugins .\\out\\macro-pad-win32-x64\\plugins && .\\out\\macro-pad-win32-x64\\macro-pad.exe",
-        "make": "electron-forge make",
-        "publish": "electron-forge publish",
+        "start": "tsc && electron-forge start",
+        "start-build": "tsc && npm run package && cp -r .\\plugins .\\out\\macro-pad-win32-x64\\plugins && .\\out\\macro-pad-win32-x64\\macro-pad.exe",
+        "make": "tsc && electron-forge make",
+        "publish": "tsc && electron-forge publish",
         "lint": "echo \"No linting configured\"",
-        "package": "electron-forge package",
-        "package-mac": "electron-forge package --platform darwin",
-        "package-deb": "electron-forge package --platform linux --targets deb",
-        "package-linux": "electron-forge package --platform linux",
-        "package-all": "npm run package && npm run package-mac && npm run package-deb && npm run package-linux"
+        "package": "tsc && electron-forge package",
+        "package-mac": "tsc && electron-forge package --platform darwin",
+        "package-deb": "tsc && electron-forge package --platform linux --targets deb",
+        "package-linux": "tsc && electron-forge package --platform linux",
+        "package-all": "tsc && npm run package && npm run package-mac && npm run package-deb && npm run package-linux"
     },
     "repository": {
         "type": "git",
@@ -66,7 +66,9 @@
     },
     "dependencies": {
         "@electron/remote": "^1.2.2",
+        "dotenv": "^10.0.0",
         "electron-squirrel-startup": "^1.0.0",
+        "obs-websocket-js": "^4.0.3",
         "voicemeeter-connector": "^1.0.3"
     },
     "devDependencies": {

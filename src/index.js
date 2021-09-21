@@ -2,6 +2,12 @@ const { readdirSync, readFileSync } = require('fs')
 const { app, BrowserWindow } = require('electron')
 const { promisify } = require('util')
 const { join } = require('path')
+const { StripProperties } = require('voicemeeter-connector')
+
+require('dotenv').config()
+
+console.log(process.env.OBS_ADDRESS)
+console.log(process.env.OBS_PASSWORD)
 
 const exec = promisify(require('child_process').exec)
 
@@ -10,27 +16,28 @@ if (require('electron-squirrel-startup')) { app.quit() }
 require('@electron/remote/main').initialize()
 
 async function loadPlugins() {
+    const plugins = {}
     for (const plugin of readdirSync('./plugins')) {
-        try {
-            const pluginFiles = readdirSync(`.\\plugins\\${plugin}`)
-            const pluginSettings = JSON.parse(readFileSync(`.\\plugins\\${plugin}\\plugin.json`))
-            const _plugin = await require(`.\\plugins\\${plugin}\\index`)
-    
-            await pluginSettings.dependancies.forEach(async dependancy => { await exec(`npm install ${dependancy}`) })
+        const pluginFiles = readdirSync(`.\\plugins\\${plugin}`)
+        const pluginSettings = JSON.parse(readFileSync(`.\\plugins\\${plugin}\\plugin.json`))
+        await pluginSettings.dependancies.forEach(async dependancy => { await exec(`npm install ${dependancy}`) })
+        
+        await new Promise(r => setTimeout(r, 5000))
 
-            const init = _plugin()
-
-            // console.log(init)
-            
-            if (!init) { throw new Error(`Error initialising plugin "${pluginSettings.name}"!`) }
-
-            // console.log(_plugin)
-        } catch {}
+        const _plugin = require(`..\\plugins\\${plugin}\\index`)
+        const init = await _plugin.init()
+        
+        if (!init) { throw new Error(`Error Initializing Plugin "${pluginSettings.name}"!`) }
+        
+        plugins[plugin] = _plugin
     }
+    return plugins
 }
 
 async function main() {
     const plugins = await loadPlugins()
+
+    console.log(plugins)
 
     const window = new BrowserWindow({
         width: 1280, height: 720,

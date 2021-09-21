@@ -35,35 +35,94 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
         if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
     }
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.setStripLevel = void 0;
+exports.setBusProperty = exports.setStripProperty = exports.setBusGain = exports.setStripGain = exports.init = exports.settings = void 0;
 var voicemeeter_connector_1 = require("voicemeeter-connector");
+var plugin_json_1 = __importDefault(require("./plugin.json"));
 var vm;
+exports.settings = plugin_json_1.default;
 function init() {
     return __awaiter(this, void 0, void 0, function () {
         var _a;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
-                    _b.trys.push([0, 2, , 3]);
+                    _b.trys.push([0, 3, , 4]);
                     return [4 /*yield*/, voicemeeter_connector_1.Voicemeeter.init()];
-                case 1:
-                    vm = _b.sent();
-                    return [2 /*return*/, false];
+                case 1: return [4 /*yield*/, (_b.sent())];
                 case 2:
+                    vm = _b.sent();
+                    vm.connect();
+                    return [2 /*return*/, true];
+                case 3:
                     _a = _b.sent();
                     return [2 /*return*/, false];
-                case 3: return [2 /*return*/];
+                case 4: return [2 /*return*/];
             }
         });
     });
 }
-exports.default = init;
-function setStripLevel(index, level) {
+exports.init = init;
+function setStripGain(index, gain) {
     return __awaiter(this, void 0, void 0, function () {
         return __generator(this, function (_a) {
-            return [2 /*return*/, true];
+            try {
+                vm.setStripParameter(index - 1, StripProperties.Gain, gain);
+                return [2 /*return*/, true];
+            }
+            catch (_b) {
+                return [2 /*return*/, false];
+            }
+            return [2 /*return*/];
         });
     });
 }
-exports.setStripLevel = setStripLevel;
+exports.setStripGain = setStripGain;
+function setBusGain(index, gain) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            try {
+                vm.setBusParameter(index - 1, BusProperties.Gain, gain);
+                return [2 /*return*/, true];
+            }
+            catch (_b) {
+                return [2 /*return*/, false];
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.setBusGain = setBusGain;
+function setStripProperty(index, property, value) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            try {
+                vm.setStripParameter(index - 1, property, value);
+                return [2 /*return*/, true];
+            }
+            catch (_b) {
+                return [2 /*return*/, false];
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.setStripProperty = setStripProperty;
+function setBusProperty(index, property, value) {
+    return __awaiter(this, void 0, void 0, function () {
+        return __generator(this, function (_a) {
+            try {
+                vm.setBusParameter(index - 1, property, value);
+                return [2 /*return*/, true];
+            }
+            catch (_b) {
+                return [2 /*return*/, false];
+            }
+            return [2 /*return*/];
+        });
+    });
+}
+exports.setBusProperty = setBusProperty;

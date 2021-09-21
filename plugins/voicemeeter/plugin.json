@@ -1,6 +1,6 @@
 {
     "name": "voicemeeter",
-    "version": "1.0",
+    "version": 1.0,
     "description": "An interface for voicemeeter!",
     "dependancies": [ "voicemeeter-connector" ]
 }
